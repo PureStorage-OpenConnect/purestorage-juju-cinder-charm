@@ -1,14 +1,18 @@
 name: cinder-pure
-summary: Pure Storage FlashArray integration for OpenStack Block Storage
+summary: Pure Storage FlashArray integration charm for OpenStack Block Storage
 maintainers:
  - Simon Dodsley <simon@purestorage.com>
 description: |
- Cinder is the block storage service for the Openstack project.
+ Cinder is the block storage service for the OpenStack project.
  .
- This charm provides an Pure Storage Flasharray storage backend for Cinder
+ This charm provides a Pure Storage Flasharray storage backend for Cinder
 tags:
   - openstack
   - storage
+series:
+  - xenial
+  - trusty
+  - precise
 subordinate: true
 provides:
   storage-backend:

@@ -2,8 +2,12 @@ options:
   san_ip:
     type: string
     default: 10.234.112.100
-    description: Management VIP address of the Pure Storage FlashArray
+    description: "Management VIP address of the Pure Storage FlashArray"
   pure_api_token:
     type: string
     default: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-    description: API token for FlashArray access
+    description: "API token for FlashArray access"
+  protocol:
+    type: string
+    defsult: iscsi
+    description: "The SAN connectivity protocol to use. Valid options are iscsi or fc."

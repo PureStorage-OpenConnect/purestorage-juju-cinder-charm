@@ -21,23 +21,30 @@ class PureSubordinateContext(OSContextGenerator):
     ]
 
     def __call__(self):
+    
+        required_keys = ['protocol', 'san_ip', 'pure_api_token']
+
+        for key in required_keys:
+            if not config(k): 
+              raise PureIncompleteConfiguration(
+                  'Missing configuration setting "%s"' % key)
+
         ctxt = []
-        missing = []
         for k in self._config_keys:
             if config(k):
-                ctxt.append(("{}".format(k.replace('-', '_')),
-                             config(k)))
-            else:
-                missing.append(k)
-        if missing:
-            raise PureIncompleteConfiguration(
-                'Missing configuration: {}.'.format(missing)
-            )
+                ctxt.append(("{}",config(k)))
 
+        protocol = config('protocol').lower()
+        if protocol not in drivers.key():
+           raise PureIncompleteConfiguration(
+               '"%s" is not a valid protocol option' % protocol)
         service = service_name()
         ctxt.append(('volume_backend_name', service))
-        volume_driver = 'cinder.volume.drivers.pure.PureISCSIDriver'
-        ctxt.append(('volume_driver', volume_driver))
+        drivers = {
+            'iscsi': 'cinder.volume.drivers.pure.PureISCSIDriver',
+            'fc': 'cinder.volume.drivers.pure.PureFCIDriver',
+        }
+        ctxt.append(('volume_driver', drivers[protocol]))
         ctxt.append(('use_multipath_for_image_xfer', 'true'))
         return {
             "cinder": {
