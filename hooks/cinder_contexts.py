@@ -35,15 +35,15 @@ class PureSubordinateContext(OSContextGenerator):
                 ctxt.append(("{}",config(k)))
 
         protocol = config('protocol').lower()
+        drivers = {
+            'iscsi': 'cinder.volume.drivers.pure.PureISCSIDriver',
+            'fc': 'cinder.volume.drivers.pure.PureFCIDriver',
+        }
         if protocol not in drivers.key():
            raise PureIncompleteConfiguration(
                '"%s" is not a valid protocol option' % protocol)
         service = service_name()
         ctxt.append(('volume_backend_name', service))
-        drivers = {
-            'iscsi': 'cinder.volume.drivers.pure.PureISCSIDriver',
-            'fc': 'cinder.volume.drivers.pure.PureFCIDriver',
-        }
         ctxt.append(('volume_driver', drivers[protocol]))
         ctxt.append(('use_multipath_for_image_xfer', 'true'))
         return {
