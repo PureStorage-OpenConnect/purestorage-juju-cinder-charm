@@ -1,7 +1,7 @@
 {
-    "id": "pure-juju-cinder-charm",
-    "filter": "openstack",
+    "id": "purestorage-juju-cinder-charm",
+    "filter": "devops",
     "image": "http://code.purestorage.com/images/17_JuJu-charms.png",
-    "featured": 1,
-    "priority": 2
+    "featured": 0,
+    "priority": 3
 }
