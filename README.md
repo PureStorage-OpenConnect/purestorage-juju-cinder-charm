@@ -1,3 +1,11 @@
+# NOTICE
+
+# THIS CHARM IS SUPERCEEDED BY THE OFFICIAL OPENSTACK CHARM MAINTAINED BY CANONICAL
+
+The source code for this is located at https://opendev.org/openstack/charm-cinder-purestorage
+
+# All details below are no longer relevent and are kept for historical purposes only!!
+
 # Pure Storage FlashArray Storage Backend for Cinder
 
 This charm provides a Pure Storage FlashArray storage backend for use with the Cinder
